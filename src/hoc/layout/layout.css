@@ -1,0 +1,14 @@
+.layout {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* background: linear-gradient(90deg,#383a3b, #414345); */
+}
+
+.layout main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* background: linear-gradient(#00c6ff, #0072ff); */
+}
+

@@ -1,0 +1,57 @@
+.MenuToggle {
+    position: fixed;
+    top: 33px;
+    left: 35px;
+    font-size: 25px;
+    cursor: pointer;
+    color: white;
+    transition: opacity, left .4s ease-out;
+    z-index: 100;
+}
+
+.MenuToggle:hover {
+    opacity: .7;
+}
+
+.MenuToggle.fa-times:hover {
+    animation: around 0.4s ease;
+    animation-iteration-count: 1;
+}
+
+@keyframes around{
+    0%  { transform: rotate(0deg); }
+    10%  { transform: rotate(36deg); }
+    20%  { transform: rotate(72deg); }
+    30%  { transform: rotate(108deg); }
+    40%  { transform: rotate(144deg); }
+    50%  { transform: rotate(180deg); }
+    60% { transform: rotate(216deg);}
+    70% { transform: rotate(252deg);}
+    80% { transform: rotate(288deg);}
+    90% {transform: rotate(324deg); }
+    100% {transform: rotate(360deg); }
+  }
+
+.MenuToggle.fa-bars:hover{
+    animation: bouncing 0.5s ease;
+    animation-iteration-count: 1;
+}
+
+@keyframes bouncing{
+    0%  { transform: translateY(0px); }
+    25% { transform: translateY(-5px);}
+    50% { transform: translateY(0px);}
+    75% { transform: translateY(-3px);}
+    100% {transform: translateY(0px); }
+  }
+
+
+.MenuToggle.open {
+    left: 420px;
+}
+
+@media screen and (max-width: 475px) {
+    .MenuToggle.open {
+        left: 360px;
+    }
+   }

@@ -1,0 +1,121 @@
+.Footer {
+    background: rgba(255, 255, 255, 0);
+    display: block;
+    width: 100%;
+    text-align: center;
+    
+}
+
+.form-inline {
+    margin-right: 5px;
+}
+
+.navbar-collapse {
+    padding: 0 0 0 50px;
+}
+
+.navbar-dark {
+    background-color: #232629;
+}
+
+.logo {
+        background-image: url('../../../logo/logo.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        width: 200px;
+        height: 70px;
+        margin-top: 0px
+}
+
+.form-control {
+    border-radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+}
+
+.btn-outline-success, .btn-outline-success:hover {
+    border-radius: 10px;
+    color: rgb(69, 241, 69);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    border: 2px solid rgb(69, 241, 69);
+    transition: .3s;
+}
+
+.btn-outline-success:active {
+    outline: none;
+    background: rgba(206, 28, 28, 0.5);
+}
+
+.btn-outline-success:hover {
+    background-color: rgba(255, 255, 255, 0.192);
+}
+
+.nav-link {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: rgb(235, 26, 26);
+}
+
+.search-result {
+    display: block;
+    position: absolute;
+    top: 65px;
+    width: 250px;
+    height: fit-content;
+    max-height: 200px;
+    border: 2px solid #fff;
+    border-radius: 10px 0 0 10px;
+    overflow: auto;
+    z-index: 10;
+    background: linear-gradient(135deg,rgb(139, 139, 139), rgb(110, 110, 110));
+}
+
+.found-all {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    border: 2px solid #fff;
+    border-width: 0 0 2px 0;
+}
+
+.found-all h5 {
+    margin: 0 0 3px 3px;
+    color: #fff;
+    font-size: 15px;
+    cursor:default;
+    margin-right: auto;
+}
+
+.coll-found-block {
+    display: block;
+    width: 100%;
+    border: 2px solid #fff;
+    border-width: 0 0 2px 0;
+}
+
+
+@media (min-width: 0px){
+.navbar-dark .navbar-toggler {
+    display: none;
+    }
+}
+
+@media (min-width: 0px){
+.navbar-dark .navbar-collapse {
+    display: flex!important;
+    flex-basis: auto;
+}}
+
+@media screen and (max-width: 590px) {
+    .form-inline.my-2.my-lg-0 {
+        min-width: 50px;
+    }
+    .search-result {
+        width:175px;
+    }
+   }
+

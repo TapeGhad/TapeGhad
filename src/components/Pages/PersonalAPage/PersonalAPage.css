@@ -1,0 +1,344 @@
+.personalA-page {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px 0px
+}
+
+.personal-info {
+    display: block;
+    color: #fff;
+    background: linear-gradient(135deg, rgb(52, 56, 58),rgb(52, 55, 56));
+    width: 40%;
+    height: inherit;
+    max-width: 450px;
+    padding: 10px 20px 15px;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: 65px;
+    cursor: default;
+}
+
+.personal-info h2 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 24px;
+    margin-bottom: 0;
+}
+
+.personal-coll {
+    display: flex;
+    flex-direction: column;
+    background-color: #82b6f500;
+    padding: 10px 0px;
+    
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.toolbar {
+    width: 100%;
+    text-align: left;
+    color: #fff;
+    cursor: default;
+    padding: 5px 65px;
+}
+
+.toolbar hr {
+    border-top: 2px solid #fff;
+    margin-bottom: 0;
+}
+
+.coll-list {
+    width: 100%;
+    opacity: 1;
+    visibility: visible;
+    height: 0;
+    padding: 10px;
+    cursor: default;
+    text-align: center;
+    color: #fff;
+    transform: translateX(0px);
+    transition: all .5s ease-in;
+}
+
+.coll-list.closed {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    /* transform: translateX(-1500px);
+    visibility: hidden;
+    height: 0; */
+}
+
+.create-coll-container {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    left: 20%;
+    top: 350px;
+    width: 60%;
+    justify-content: center;
+    padding: 0px 55px;
+    border-radius: 10px;
+    margin-top: 5px;
+    color: #fff;
+    transform: translateX(0px);
+    visibility: visible;
+    transition: all .9s ease-out;
+}
+
+.create-coll-container.closed {
+    transform: translateX(-1500px);
+    height: 0;
+    visibility: hidden;
+}
+
+.create-coll-block {
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 10px;
+    opacity: 1;
+    height: inherit;
+    text-align: left;
+    border: 2px solid #fff;
+    padding: 10px 20px 15px;
+    border-radius: 10px;
+    color: #fff;
+    transform: translateX(0px);
+    visibility: visible;
+    transition: all .9s ease-out;
+}
+.create-coll-block.closed {
+    height: 0;
+    opacity: 0;
+    border: none;
+    transform: translateX(-2000px);
+    visibility: hidden;
+}
+
+.create-coll-block label {
+    margin-top: 5px;
+    margin-bottom: 3px;
+    font-size: 17px;
+}
+
+
+.buttons {
+    justify-content: space-between;
+}
+
+.btn-success, .btn-primary, .btn-warning {
+    margin-top: 15px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 18px;
+    border: 2px solid rgb(59, 59, 59);
+    border-radius: 11px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+.btn-success.exists {
+    width: 70px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    margin-top: 0;
+    margin-left: auto;
+}
+
+.btn-success:hover, .btn-primary:hover, .btn-warning:hover {
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+}
+
+.delete-coll {
+    border: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: rgba(128, 128, 128, 0);
+    color: rgb(255, 56, 56);
+    font-size: 40px;
+    padding: 0;
+    transform: translateY(-10px);
+    transition: .3s;
+}
+
+.delete-coll:hover {
+    transform: translateY(-13px);
+    outline: none;
+}
+
+.form-control.coll {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+}
+
+.form-control option {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.user-coll-list {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 75px;
+    justify-content: center;
+}
+
+.collection-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 15px;
+    width: 80%;
+    max-width: 900px;
+    border: 2px solid #fff;
+    color: #fff;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    transition: .3s;
+}
+
+.info-coll-block {
+    display: block;
+    width: 50%;
+    height: 100%;
+    max-width: 50%;
+    color: #fff;
+}
+
+.collection-block h4 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    cursor: default;
+}
+
+.collection-block:hover {
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.4);
+    background-color: rgb(92, 92, 92);
+    transform: translateY(-3px);
+}
+
+.collection-block h2 {
+    color:rgb(52, 248, 52);
+    animation: click 5s;
+    text-shadow: 0px 4px 5px black, 0 0 5px rgb(156, 255, 156);
+    transform: rotate(2deg);
+    animation-iteration-count: infinite;
+}
+
+@keyframes click{
+    10%  { transform: rotate(-2deg); }
+    20%  { transform: rotate(2deg); }
+    30%  { transform: rotate(-2deg); }
+    40%  { transform: rotate(2deg); }
+    50%  { transform: rotate(-2deg); }
+    60% { transform: rotate(2deg);}
+    70% { transform: rotate(-2deg);}
+    80% { transform: rotate(2deg);}
+    90% { transform: rotate(-2deg);}
+    100% { transform: rotate(2deg);}
+   
+  }
+
+.collectionsStatus {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(0px);
+    transition: .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.collectionsStatus.move {
+    transform: translateY(360px);
+}
+
+.collectionsStatus.move.err {
+    transform: translateY(410px);
+}
+
+.topic-alcohol, .topic-books, .topic-music, .topic-cars {
+    background-image: url('../../../logo/Alcohol.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 100px;
+    height: auto;
+    margin-top: 0px
+}
+
+.topic-books {
+    background-image: url('../../../logo/Book.png');
+}
+
+.topic-music {
+    background-image: url('../../../logo/Music.png');
+}
+
+.topic-cars {
+    background-image: url('../../../logo/Cars.png');
+}
+
+@media screen and (max-width: 700px) {
+    .collection-block {
+        min-width: fit-content;
+    }
+   }
+
+@media screen and (max-width: 1133px) {
+    .create-coll-container {
+        top: 375px;
+    }
+   }
+
+@media screen and (max-width: 721px) {
+    .create-coll-container {
+        top: 400px;
+    }
+   }
+
+@media screen and (max-width: 670px) {
+    .personal-info {
+        width: 100%;
+    }
+    .create-coll-container {
+        top: 370px;
+    }
+   }
+
+@media screen and (max-width: 654px) {
+    .create-coll-block {
+        min-width: 280px;
+    }
+   }
+
+@media screen and (max-width: 488px) {
+    .toolbar {
+        padding: 0 0 0 0;
+    }
+    .create-coll-container {
+        top: 400px;
+    }
+   }
+
+@media screen and (max-width: 450px) {
+    .personal-info {
+        min-width:395px;
+    }
+    .toolbar {
+        min-width: 395px;
+    }
+    .personal-coll {
+        min-width: 396px;
+    }
+    .user-coll-list {
+        min-width: 395px;
+    }
+    .create-coll-container {
+        min-width: 258px;
+        left: 90px;
+    }
+    .create-coll-block {
+        min-width: 280px;
+    }
+   }
+

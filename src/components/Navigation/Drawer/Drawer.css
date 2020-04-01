@@ -1,0 +1,43 @@
+.Drawer {
+    color: #fff;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 80%;
+    height: 0px;
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 10px;
+    /* border: 2px solid grey; */
+    box-sizing: border-box;
+    background-color: rgba(29, 29, 29, 0);
+    transform: translateX(0px);
+    transition: all .4s ease-out;
+    z-index: 90;
+}
+
+.Drawer.close {
+    transform: translateX(-400px);
+}
+
+.Drawer label {
+    padding-top: 10px;
+    margin-bottom: 0;
+}
+
+.form-control {
+    max-width: 250px;
+}
+
+@media screen and (max-width: 590px) {
+    .Drawer {
+        width: 100%;
+    }
+   }
+
+
+
+
+
+

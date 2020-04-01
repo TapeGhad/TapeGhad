@@ -1,0 +1,296 @@
+.main-page {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.collections-block-main {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 20px 50px;
+}
+
+.collections-block-main hr, .items-block-main hr {
+    border-top: 3px solid #fff;
+    margin-bottom: 0;
+    box-shadow: 2px 5px 10px black;
+}
+
+.collections-list-main {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0 0 0;
+}
+
+.collection-block-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 15px;
+    width: 80%;
+    max-width: 900px;
+    border: 2px solid #fff;
+    color: #fff;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    transition: .3s;
+}
+
+.delete-coll {
+    border: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: rgba(128, 128, 128, 0);
+    color: rgb(255, 56, 56);
+    font-size: 40px;
+    padding: 0;
+    transform: translateY(-10px);
+    transition: .3s;
+}
+
+.delete-coll:hover {
+    transform: translateY(-13px);
+    outline: none;
+}
+
+.topic-alcohol, .topic-books, .topic-music, .topic-cars {
+    display: flex;
+    flex-direction: row;
+    background-image: url('../../../logo/Alcohol.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 100px;
+    height: auto;
+    margin-top: 0px
+}
+
+.topic-books {
+    background-image: url('../../../logo/Book.png');
+}
+
+.topic-music {
+    background-image: url('../../../logo/Music.png');
+}
+
+.topic-cars {
+    background-image: url('../../../logo/Cars.png');
+}
+
+.collection-block-main h2 {
+    color:rgb(52, 248, 52);
+    animation: click 5s;
+    text-shadow: 0px 4px 5px black, 0 0 5px rgb(156, 255, 156);
+    transform: rotate(2deg);
+    animation-iteration-count: infinite;
+}
+
+@keyframes click{
+    10%  { transform: rotate(-2deg); }
+    20%  { transform: rotate(2deg); }
+    30%  { transform: rotate(-2deg); }
+    40%  { transform: rotate(2deg); }
+    50%  { transform: rotate(-2deg); }
+    60% { transform: rotate(2deg);}
+    70% { transform: rotate(-2deg);}
+    80% { transform: rotate(2deg);}
+    90% { transform: rotate(-2deg);}
+    100% { transform: rotate(2deg);}
+  }
+
+.collection-block-main h4 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    cursor: default;
+}
+
+.collection-block-main:hover {
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.4);
+    background-color: rgb(92, 92, 92);
+    transform: translateY(-3px);
+}
+
+.check-main {
+    display: inline-block;
+    font-size: 30px;
+    margin-left: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 7px;
+    color: rgb(138, 255, 102);
+}
+
+.check-main:hover{
+    color: rgb(60, 255, 0);
+}
+
+.pagination-coll-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px;
+}
+
+.page-main, .page-active-main {
+    display: block;
+    padding: 0px 5px;
+    margin-right: 5px;
+    cursor: pointer;
+    height: fit-content;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.page-active-main {
+    border: 2px solid rgb(144, 255, 54);
+    color:rgb(144, 255, 54) ;
+}
+
+.page-main h1, .page-active-main h1 {
+    margin-bottom: 0;
+    font-size: 30px;
+}
+
+.page-main:hover, .page-active-main:hover {
+    transform: rotate(3deg);
+    animation: pagination 1s ease;
+    animation-iteration-count: infinite;
+}
+
+@keyframes pagination{
+        10%  { transform: rotate(-3deg); }
+        20%  { transform: rotate(3deg); }
+        30%  { transform: rotate(-3deg); }
+        40%  { transform: rotate(3deg); }
+        50%  { transform: rotate(-3deg); }
+        60% { transform: rotate(3deg);}
+        70% { transform: rotate(-3deg);}
+        80% { transform: rotate(3deg);}
+        90% { transform: rotate(-3deg);}
+        100% { transform: rotate(3deg);}
+}
+
+
+
+.items-block-main {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 20px 50px;
+}
+
+.items-list-main{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0 0 0;
+}
+
+.item-block-main {
+    display: block;
+    padding: 10px 15px;
+    width: 90%;
+    background-image: linear-gradient(45deg, #ffffff 0%, #ffffff00 50%, rgba(0, 0, 0, 0) 100%);
+    background-position: 100% 0;
+    background-size: 300% 300%;
+    min-width: fit-content;
+    border: 2px solid rgb(160, 252, 255);
+    color: #fff;
+    border-radius: 15px;
+    margin-top: 10px;
+    transition: .3s;
+}
+
+.item-block-main.open {
+    border-radius: 15px 15px 0 0;
+}
+
+.item-block-main:hover {
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+    background-position: 0 0;
+    animation: colorise 7s ease;
+    animation-iteration-count: infinite;
+}
+
+@keyframes colorise {
+    0%  { background-position: 100% 0;}
+    25% { background-position: 0 0; color: black;}
+    50% { background-position: 100% 0;color: #fff;}
+    75% { background-position: 0 0;color: black;}
+    100% { background-position: 100% 0;color: #fff;}
+}
+
+.item-block-main.open:hover {
+    box-shadow: none;
+    background-position: 0 0;
+    transform: none;
+    animation: colorise 7s ease;
+    animation-iteration-count: infinite;
+}
+
+.comments-block-main {
+    width: 100%;
+    height: fit-content;
+    max-height: 300px;
+    overflow: auto;
+}
+
+.comment-block-main {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    border-radius: 0px 0px 15px 15px;
+    border: 2px solid rgb(160, 252, 255);
+    border-width: 0 2px 2px;
+}
+
+.comm-block-main {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #fff;
+    padding: 5px 10px;
+    border-width: 1px 0 0 0;
+}
+
+.info-coll-block-main {
+    display: block;
+    width: 50%;
+    height: 100%;
+    max-width: 50%;
+} 
+
+@media screen and (max-width: 950px) {
+    .main-page {
+        flex-direction: column;
+    }
+    .collections-block-main {
+       width: 100%;
+   }
+   .items-block-main {
+       width: 100%;
+   }
+   .item-block-main {
+    min-width: 370px;
+    }
+    .comment-block-main {
+    min-width: 370px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+   .collection-block-main {
+        min-width: fit-content;
+   }
+  }
+
+  @media screen and (max-width: 450px) {
+   .main-page {
+       min-width: 435px;
+   }
+  }
+

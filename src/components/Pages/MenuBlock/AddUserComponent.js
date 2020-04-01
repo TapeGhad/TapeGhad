@@ -44,7 +44,7 @@ export default class CreateUser extends Component {
       const user = {
         username: this.props.authorized
       }
-      axios.post('http://localhost:5000/users/confirmCookie', user)
+      axios.post('https://tapeghadkpserver.herokuapp.com/users/confirmCookie', user)
       .then(res => {
         if (res.data==="Exists") {}
         if (res.data==="Not Exists") {
@@ -63,7 +63,7 @@ export default class CreateUser extends Component {
       const user = {
         username: this.props.authorized
       }
-      axios.post('http://localhost:5000/users/logout', user)
+      axios.post('https://tapeghadkpserver.herokuapp.com/users/logout', user)
       .then(res => {
         
         this.props.authorizedChange('s');
@@ -109,7 +109,7 @@ export default class CreateUser extends Component {
           email: this.state.email
         }
 
-        axios.post('http://localhost:5000/users/add', user)
+        axios.post('https://tapeghadkpserver.herokuapp.com/users/add', user)
           .then(res => {
             console.log(res.data)
             if (res.data==="User already exists") {
@@ -177,7 +177,7 @@ export default class CreateUser extends Component {
       password: this.state.password,
     }
 
-    axios.post('http://localhost:5000/users/checkUserData', user)
+    axios.post('https://tapeghadkpserver.herokuapp.com/users/checkUserData', user)
       .then(res => {
         if (res.data!=="Incorrect data.") {
           Cookies.setItem("authorized", user.username, {expires: 1})

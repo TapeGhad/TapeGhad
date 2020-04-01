@@ -84,7 +84,7 @@ class PersonalAPage extends Component {
   }
 
     onAddClickHandler () {
-        axios.get('http://localhost:5000/topics').then(res => {
+        axios.get('https://tapeghadkpserver.herokuapp.com/topics').then(res => {
             this.setState({
                 topics: res.data
             })
@@ -148,7 +148,7 @@ class PersonalAPage extends Component {
                 description: this.state.nameDescrip,
                 topic: this.state.nameTopic
               }
-              axios.post('http://localhost:5000/collections/add', collection)
+              axios.post('https://tapeghadkpserver.herokuapp.com/collections/add', collection)
                 .then(res => {
                   if (res.data==="Collection already exists") {
                     this.setState({
@@ -198,7 +198,7 @@ class PersonalAPage extends Component {
       const user = {
         owner: this.props.authorized
       }
-      axios.post('http://localhost:5000/collections/owner', user).then(res => {
+      axios.post('https://tapeghadkpserver.herokuapp.com/collections/owner', user).then(res => {
             this.setState({
                 collections: res.data,
                 key: false
@@ -211,7 +211,7 @@ class PersonalAPage extends Component {
         collname: collname
       }
       
-      axios.post('http://localhost:5000/collections/delete', collection).then(res => {
+      axios.post('https://tapeghadkpserver.herokuapp.com/collections/delete', collection).then(res => {
           if (res.data==="Ok") this.isCollectionsExists()
           else {
             this.isCollectionsExists()

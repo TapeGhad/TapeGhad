@@ -41,7 +41,7 @@ class MainPage extends Component {
       }
 
     isCollectionsExists () {
-        axios.get('http://localhost:5000/collections').then(res => {
+        axios.get('https://tapeghadkpserver.herokuapp.com/collections').then(res => {
              const pagesColl = Math.ceil(res.data.length / this.state.PerPage)
               this.setState({
                   collections: res.data,
@@ -52,7 +52,7 @@ class MainPage extends Component {
     }
 
     isItemsExists () {
-        axios.get('http://localhost:5000/items').then(res => {
+        axios.get('https://tapeghadkpserver.herokuapp.com/items').then(res => {
              const pagesItems = Math.ceil(res.data.length / this.state.PerPage)
               this.setState({
                   items: res.data,
@@ -202,7 +202,7 @@ class MainPage extends Component {
             nameItem,
             nameColl
         }
-        axios.post('http://localhost:5000/items/like', user).then(res => {
+        axios.post('https://tapeghadkpserver.herokuapp.com/items/like', user).then(res => {
             if (res.data) {this.isItemsExists();}
             else this.isItemsExists();
    })
@@ -240,7 +240,7 @@ class MainPage extends Component {
                 comment: this.state.currComentItem
               }
               console.log(comment)
-              axios.post('http://localhost:5000/items/add-comment', comment)
+              axios.post('https://tapeghadkpserver.herokuapp.com/items/add-comment', comment)
                 .then(res => {
                     if (res.data) {this.isItemsExists();}
                         this.isItemsExists();
@@ -313,7 +313,7 @@ class MainPage extends Component {
           collname: collname
         }
         
-        axios.post('http://localhost:5000/collections/delete', collection).then(res => {
+        axios.post('https://tapeghadkpserver.herokuapp.com/collections/delete', collection).then(res => {
             if (res.data==="Ok") this.isCollectionsExists()
             else {
               this.isCollectionsExists()

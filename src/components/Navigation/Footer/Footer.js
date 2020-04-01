@@ -56,7 +56,7 @@ class Footer extends Component {
           const search = {
               search: this.state.currSearchMain
           }
-          axios.post('http://localhost:5000/search', search).then(res => {
+          axios.post('https://tapeghadkpserver.herokuapp.com/search', search).then(res => {
             if (res.data==="no") {
                 console.log("Nulll!!")
                 this.setState({

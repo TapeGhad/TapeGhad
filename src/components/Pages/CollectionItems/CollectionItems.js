@@ -108,7 +108,7 @@ class CollectionItems extends Component {
       }
 
     onAddClickHandler() {
-        axios.get('http://localhost:5000/tags').then(res => {
+        axios.get('https://tapeghadkpserver.herokuapp.com/tags').then(res => {
             this.setState({
                 tags: res.data
             })
@@ -137,7 +137,7 @@ class CollectionItems extends Component {
             nameItem: name,
             nameColl: this.state.nameColl
         }
-        axios.post('http://localhost:5000/items/like', user).then(res => {
+        axios.post('https://tapeghadkpserver.herokuapp.com/items/like', user).then(res => {
             if (res.data) {this.isItemsExists();}
             else this.isItemsExists();
        })
@@ -152,7 +152,7 @@ class CollectionItems extends Component {
                 name: this.state.nameItem,
                 tags: this.state.nameTags
               }
-              axios.post('http://localhost:5000/items/add', item)
+              axios.post('https://tapeghadkpserver.herokuapp.com/items/add', item)
                 .then(res => {
                   if (res.data==="Item already exists") {
                     this.setState({
@@ -166,7 +166,7 @@ class CollectionItems extends Component {
                     this.isItemsExists()
 
 
-                    axios.get('http://localhost:5000/tags').then(res => {
+                    axios.get('https://tapeghadkpserver.herokuapp.com/tags').then(res => {
                             this.setState({
                                 tags: res.data
                             })
@@ -226,7 +226,7 @@ class CollectionItems extends Component {
                         description: this.state.editnameDescrip,
                         topic: this.state.editnameTopic
                       }
-                      axios.post('http://localhost:5000/collections/update', collection)
+                      axios.post('https://tapeghadkpserver.herokuapp.com/collections/update', collection)
                         .then(res => {
                             if (res.data==="Collection already exists") {
                                 this.setState({
@@ -636,7 +636,7 @@ class CollectionItems extends Component {
         const collection = {
           nameColl: this.state.nameColl
         }
-        axios.post('http://localhost:5000/items/owner', collection).then(res => {
+        axios.post('https://tapeghadkpserver.herokuapp.com/items/owner', collection).then(res => {
             const pages = Math.ceil(res.data.length / this.state.itemsPerPage)
            
               this.setState({
@@ -681,7 +681,7 @@ class CollectionItems extends Component {
                         nameItem: this.state.commentNameItem,
                         comment: this.state.currComentItem
                       }
-                      axios.post('http://localhost:5000/items/add-comment', comment)
+                      axios.post('https://tapeghadkpserver.herokuapp.com/items/add-comment', comment)
                         .then(res => {
                             if (res.data) {this.isItemsExists();}
                                 this.isItemsExists();
@@ -907,7 +907,7 @@ class CollectionItems extends Component {
                     newName: this.state.nameEditItem,
                     tags: this.state.currItemTags
                   }
-                  axios.post('http://localhost:5000/items/update', item)
+                  axios.post('https://tapeghadkpserver.herokuapp.com/items/update', item)
                     .then(res => {
                       if (res.data==="Item already exists") {
                         this.setState({
@@ -919,7 +919,7 @@ class CollectionItems extends Component {
                         this.onEditItemCloseHandler()
                         this.isItemsExists()
     
-                        axios.get('http://localhost:5000/tags').then(res => {
+                        axios.get('https://tapeghadkpserver.herokuapp.com/tags').then(res => {
                                 this.setState({
                                     tags: res.data
                                 })
@@ -972,7 +972,7 @@ class CollectionItems extends Component {
             nameColl: this.state.nameColl
           }
           
-          axios.post('http://localhost:5000/items/delete', item).then(res => {
+          axios.post('https://tapeghadkpserver.herokuapp.com/items/delete', item).then(res => {
               if (res.data==="Ok") this.isItemsExists()
               else {
                 this.isItemsExists();
@@ -1013,7 +1013,7 @@ class CollectionItems extends Component {
 
     componentDidMount() {
         this._isMounted = true;
-        axios.get('http://localhost:5000/tags').then(res => {
+        axios.get('https://tapeghadkpserver.herokuapp.com/tags').then(res => {
             this.setState({
                 tags: res.data
             })
@@ -1035,7 +1035,7 @@ class CollectionItems extends Component {
             nameColl: params.name
         }
 
-        axios.get('http://localhost:5000/topics').then(res => {
+        axios.get('https://tapeghadkpserver.herokuapp.com/topics').then(res => {
             this.setState({
                 topics: res.data
             })
@@ -1043,7 +1043,7 @@ class CollectionItems extends Component {
 
        
 
-        axios.post('http://localhost:5000/collections/info', collection).then(res => {
+        axios.post('https://tapeghadkpserver.herokuapp.com/collections/info', collection).then(res => {
             if (res.data===null)
             {
                 this.setState({

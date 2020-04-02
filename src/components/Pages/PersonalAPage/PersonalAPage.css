@@ -278,6 +278,61 @@
     background-image: url('../../../logo/Cars.png');
 }
 
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px;
+}
+
+.pagination.move-coll {
+    transform: translateY(350px);
+}
+
+.pagination.move-coll.err-coll {
+    transform: translateY(410px);
+}
+
+.page, .page-active {
+    display: block;
+    padding: 0px 5px;
+    margin-right: 5px;
+    cursor: pointer;
+    height: fit-content;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.page-active {
+    border: 2px solid rgb(144, 255, 54);
+    color:rgb(144, 255, 54) ;
+}
+
+.page h1, .page-active h1 {
+    margin-bottom: 0;
+    font-size: 30px;
+}
+
+.page:hover, .page-active:hover {
+    transform: rotate(3deg);
+    animation: pagination 1s ease;
+    animation-iteration-count: infinite;
+}
+
+@keyframes pagination{
+        10%  { transform: rotate(-3deg); }
+        20%  { transform: rotate(3deg); }
+        30%  { transform: rotate(-3deg); }
+        40%  { transform: rotate(3deg); }
+        50%  { transform: rotate(-3deg); }
+        60% { transform: rotate(3deg);}
+        70% { transform: rotate(-3deg);}
+        80% { transform: rotate(3deg);}
+        90% { transform: rotate(-3deg);}
+        100% { transform: rotate(3deg);}
+}
+
 @media screen and (max-width: 700px) {
     .collection-block {
         min-width: fit-content;

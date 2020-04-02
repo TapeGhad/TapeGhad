@@ -23,6 +23,8 @@ class PersonalAPage extends Component {
         this.isCollectionsExists = this.isCollectionsExists.bind(this);
         this.deleteCollection = this.deleteCollection.bind(this);
         this.CollectionList=this.CollectionList.bind(this);
+        this.Pagination = this.Pagination.bind(this);
+        this.onChangePage = this.onChangePage.bind(this);
 
 
         this.state = {
@@ -39,7 +41,11 @@ class PersonalAPage extends Component {
           topics: [],
           statusColl: ["form-control coll"],
           statusDescrip: ["form-control coll"],
-          statusTopic: ["form-control coll"]
+          statusTopic: ["form-control coll"],
+          pagination: ["pagination"],
+          currPage: 1,
+          CollPerPage: 5,
+          pages: 0
         }
       }
 
@@ -91,6 +97,7 @@ class PersonalAPage extends Component {
         })
 
         const coll = this.state.addClicked ? ["collectionsStatus"] : ["collectionsStatus", "move"]
+        const pagination = this.state.addClicked ? ["pagination"] : ["pagination", "move-coll"] 
         this.setState({
             addClicked: !this.state.addClicked,
             nameColl: '',
@@ -101,7 +108,8 @@ class PersonalAPage extends Component {
             topics: [],
             statusColl: ["form-control coll"],
             statusDescrip: ["form-control coll"],
-            statusTopic: ["form-control coll"]
+            statusTopic: ["form-control coll"],
+            pagination: pagination
 
         })
     }
@@ -127,12 +135,14 @@ class PersonalAPage extends Component {
       }
 
     onFocusField() {
+        const pagination = this.state.addClicked ? ["pagination", "move-coll"] : ["pagination"]
         this.setState({
           status: [],
           statusColl: ["form-control coll"],
           statusDescrip: ["form-control coll"],
           statusTopic: ["form-control coll"],
-          collectionsStatus: ["collectionsStatus", "move"]
+          collectionsStatus: ["collectionsStatus", "move"],
+          pagination: pagination
         })
       }
 
@@ -154,7 +164,8 @@ class PersonalAPage extends Component {
                     this.setState({
                       status: ["Coll-exists"],
                       statusColl: ["form-control coll", "error"],
-                      collectionsStatus: ["collectionsStatus", "move", "err"]
+                      collectionsStatus: ["collectionsStatus", "move", "err"],
+                      pagination: ["pagination", "move-coll", "err-coll"]
                     })
                   }
                   if (res.data==="Collection added succesfully.") {
@@ -165,7 +176,8 @@ class PersonalAPage extends Component {
                       status: ["Successfully"],
                       statusColl: ["form-control coll"],
                       statusDescrip: ["form-control coll"],
-                      collectionsStatus: ["collectionsStatus", "move", "err"]
+                      collectionsStatus: ["collectionsStatus", "move", "err"],
+                      pagination: ["pagination", "move-coll", "err-coll"]
                     })
                   }
                 });
@@ -173,14 +185,16 @@ class PersonalAPage extends Component {
                 this.setState({
                     status: ["Short-Topic"],
                     statusTopic: ["form-control coll", "error"],
-                    collectionsStatus: ["collectionsStatus", "move", "err"]
+                    collectionsStatus: ["collectionsStatus", "move", "err"],
+                    pagination: ["pagination", "move-coll", "err-coll"]
                   })
             } 
           } else {
               this.setState({
                 status: ["Incorect-Descrip"],
                 statusDescrip: ["form-control coll", "error"],
-                collectionsStatus: ["collectionsStatus", "move", "err"]
+                collectionsStatus: ["collectionsStatus", "move", "err"],
+                pagination: ["pagination", "move-coll", "err-coll"]
               })
             }
           }
@@ -188,7 +202,8 @@ class PersonalAPage extends Component {
           this.setState({
             status: ["Incorect-CollName"],
             statusColl: ["form-control coll", "error"],
-            collectionsStatus: ["collectionsStatus", "move", "err"]
+            collectionsStatus: ["collectionsStatus", "move", "err"],
+            pagination: ["pagination", "move-coll", "err-coll"]
           })
       
         }
@@ -199,9 +214,11 @@ class PersonalAPage extends Component {
         owner: this.props.authorized
       }
       axios.post('https://tapeghadkpserver.herokuapp.com/collections/owner', user).then(res => {
+          const pages = Math.ceil(res.data.length / this.state.CollPerPage)
             this.setState({
                 collections: res.data,
-                key: false
+                key: false,
+                pages: pages
             })
         })
     }
@@ -217,6 +234,39 @@ class PersonalAPage extends Component {
             this.isCollectionsExists()
           } 
         })
+    }
+
+    onChangePage (page) {
+      this.setState({
+          currPage: page
+      })
+  }
+
+    Pagination() {
+     
+      const pages = [];
+      for(let page=1; page<=this.state.pages; page++) {
+          pages.push(page)
+      }
+           
+      return  pages.map((page, index) => {
+                  return (
+                      
+                      <div key={index}>
+                          {this.state.currPage===page 
+                          ?
+                              <div className="page-active" key={index} onClick={this.onChangePage.bind(this, page)}>
+                                  <h1>{page}</h1>
+                              </div>
+                          : 
+                              <div className="page" key={index} onClick={this.onChangePage.bind(this, page)}>
+                                  <h1>{page}</h1>
+                              </div>
+                          }
+                      </div>
+                      
+                  )
+              })
     }
 
       
@@ -317,6 +367,9 @@ class PersonalAPage extends Component {
                     />}
                     <div className={this.state.collectionsStatus.join(" ")}>
                       {this.CollectionList()}
+                    </div>
+                    <div className={this.state.pagination.join(" ")}>
+                              {this.Pagination()}
                     </div>
                 </div>
                 

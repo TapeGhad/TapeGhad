@@ -115,3 +115,15 @@
         min-width: 380px;
     }
 }
+
+@media screen and (max-width: 405px) {
+    .register-back {
+        min-width: 100%;
+    }
+}
+
+@media screen and (max-width: 310px) {
+    .buttons.logout {
+        flex-direction: column;
+    }
+}

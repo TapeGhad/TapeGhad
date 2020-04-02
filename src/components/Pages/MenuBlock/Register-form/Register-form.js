@@ -21,7 +21,7 @@ const RegisterForm = props => (
            <Warning status="Invalid-data" word="Email already exists"/> 
            :props.currStatus.includes("Short-pass") ?
            <Warning status="Invalid-data" word="Pass is too short (5 min)"/> : null}
-          <form onSubmit={props.onSubmitRegister}>
+          <form >
           <div className="form-group">
             <Input    
               name="Username: "

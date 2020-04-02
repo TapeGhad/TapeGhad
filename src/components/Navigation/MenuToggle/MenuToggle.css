@@ -55,3 +55,9 @@
         left: 360px;
     }
    }
+
+   @media screen and (max-width: 405px) {
+    .MenuToggle.open {
+        left: 85%;
+    }
+}

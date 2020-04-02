@@ -12,3 +12,9 @@
     /* background: linear-gradient(#00c6ff, #0072ff); */
 }
 
+@media screen and (max-width: 450px) {
+    body {
+        min-width: 450px;
+    }
+   }
+

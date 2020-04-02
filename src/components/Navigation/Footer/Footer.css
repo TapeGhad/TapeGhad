@@ -119,3 +119,9 @@
     }
    }
 
+@media screen and (max-width: 450px) {
+    .navbar.navbar-dark {
+        min-width: 450px;
+    }
+   }
+

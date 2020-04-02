@@ -439,7 +439,7 @@
 }
 
 .pagination.move.err {
-    transform: translateY(315px);
+    transform: translateY(325px);
 }
 
 .page, .page-active {

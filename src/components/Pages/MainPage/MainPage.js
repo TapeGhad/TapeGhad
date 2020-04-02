@@ -325,6 +325,7 @@ class MainPage extends Component {
         this._isMounted = true;
         this.state.counter > 0 && setInterval(() => {
             this.isItemsExists();
+            this.isCollectionsExists();
         }, 3000);
       }
 

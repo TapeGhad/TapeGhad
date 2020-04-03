@@ -94,7 +94,7 @@ const CollectionHeader = props => (
                         <div className="block-tags-filtr" >
                             <i className="fa fa-filter"></i>
                             <div className="form-group" style={{marginBottom: "0"}}>
-                                                <div className="tags-input" >
+                                                <div className="tags-input filtr" >
                                                     {props.AddedTags()}
                                                     <input 
                                                         className="form-control" 

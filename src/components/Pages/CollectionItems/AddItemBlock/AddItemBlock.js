@@ -37,6 +37,7 @@ const AddItemBlock = props => (
                                                     onChange={props.onChangeTags}
                                                     onFocus={props.onFocusField}
                                                     value={props.currTag}
+                                                    placeholder="Tags"
                                                     style={{border:"none", minWidth:"100px"}}>
                                                 </input>  
                                             </div>

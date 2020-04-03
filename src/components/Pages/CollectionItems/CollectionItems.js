@@ -584,7 +584,7 @@ class CollectionItems extends Component {
         else {
         return this.state.nameFiltrTags.map((tag, index) => {
             return ( 
-            <div className="tag-block" key={index}>
+            <div className="tag-block filtr" key={index}>
                 {tag}
                 <i className="fa fa-times tags" onClick={this.removeFiltrTag.bind(this, tag)}/>
             </div>

@@ -659,16 +659,27 @@
     }
    }
 
+@media screen and (max-width: 700px) {
+    .tags-input.filtr {
+        flex-direction: column;
+    }
+    .tag-block.filtr {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .item-tool-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+   }
+
 @media screen and (max-width: 510px) {
     .add-item-cont {
         top: 500px;
     }
     .descrip-redacting {
         flex-direction: column;
-    }
-    .item-tool-bar {
-        flex-direction: column;
-        align-items: center;
     }
    }
 

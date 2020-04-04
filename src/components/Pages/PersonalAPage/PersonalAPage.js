@@ -30,10 +30,13 @@ class PersonalAPage extends Component {
         this.BlockUser = this.BlockUser.bind(this);
         this.BanUser = this.BanUser.bind(this);
         this.UnblockUser = this.UnblockUser.bind(this);
+        this.GetAdminUsersList = this.GetAdminUsersList.bind(this);
+        
         
 
 
         this.state = {
+          keyUsers: true,
           username: this.props.authorized,
           email: this.props.email,
           addClicked: false,
@@ -294,14 +297,17 @@ class PersonalAPage extends Component {
               })
     }
 
-    AdminUsersList() {
-      
+    GetAdminUsersList() {
       axios.get('https://tapeghadkpserver.herokuapp.com/users/test').then(res => {
           
-            this.setState({
-               usersList: res.data
-            })
+        this.setState({
+           usersList: res.data,
+           keyUsers:false
         })
+    })
+    }
+
+    AdminUsersList() {
 
         // for (let iter=0; iter<=this.state.usersList.length; iter+=3)
         let iter = -1;
@@ -310,7 +316,7 @@ class PersonalAPage extends Component {
         if (iter%3===0 || iter%3===3){
           if  (user.username!=="admin") {
         return (
-          <div className="admin-main-us">
+          <div className="admin-main-us" key={index}>
                       <div className="admin-main-small-table" style={{ padding: "5px 0 0 15px",width: "30%", borderWidth: "0"}}>
                         <h2>{user.username}</h2>
                       </div>
@@ -322,8 +328,8 @@ class PersonalAPage extends Component {
                       </div>
                       <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width:"15%"}}>
                         {user.status===1 
-                          ? <i class="fa fa-lock" onClick={this.BlockUser.bind(this, user.username)}></i>
-                          : <i class="fa fa-unlock" onClick={this.UnblockUser.bind(this, user.username)}></i>}
+                          ? <i className="fa fa-lock" onClick={this.BlockUser.bind(this, user.username)}></i>
+                          : <i className="fa fa-unlock" onClick={this.UnblockUser.bind(this, user.username)}></i>}
                       </div>
                       <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width:"15%"}} >
                         <i className="fa fa-user-times" title="Delete User" onClick={this.BanUser.bind(this, user.username)}></i>
@@ -351,6 +357,9 @@ class PersonalAPage extends Component {
       }
       axios.post('https://tapeghadkpserver.herokuapp.com/users/block', user).then(res => {
         this.AdminUsersList()
+        this.setState({
+          keyUsers: true
+        })
     })
     }
 
@@ -360,7 +369,11 @@ class PersonalAPage extends Component {
       }
       axios.post('https://tapeghadkpserver.herokuapp.com/users/unblock', user).then(res => {
         this.AdminUsersList()
+        this.setState({
+          keyUsers: true
+        })
     })
+    
     }
 
     BanUser (username) {
@@ -369,6 +382,9 @@ class PersonalAPage extends Component {
       }
       axios.post('https://tapeghadkpserver.herokuapp.com/users/delete', user).then(res => {
         this.AdminUsersList()
+        this.setState({
+          keyUsers: true
+        })
     })
     }
       
@@ -376,7 +392,9 @@ class PersonalAPage extends Component {
     render () {
         return (
         <div className="personalA-page">
+          {this.state.keyUsers ? this.GetAdminUsersList() : null}
           {this.CheckCookies()}
+          
             {this.props.authorized!=="admin" ?
             <>
               {this.state.key ? this.isCollectionsExists() : null}

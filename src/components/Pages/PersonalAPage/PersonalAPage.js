@@ -37,6 +37,7 @@ class PersonalAPage extends Component {
 
         this.state = {
           keyUsers: true,
+          keyCook: true,
           username: this.props.authorized,
           email: this.props.email,
           addClicked: false,
@@ -73,6 +74,9 @@ class PersonalAPage extends Component {
               
             Cookies.removeItem("authorized")
             Cookies.removeItem("email")
+            this.setState({
+              keyCook: false
+            })
             }
           });
       }}
@@ -127,6 +131,7 @@ class PersonalAPage extends Component {
         const coll = this.state.addClicked ? ["collectionsStatus"] : ["collectionsStatus", "move"]
         const pagination = this.state.addClicked ? ["pagination"] : ["pagination", "move-coll"] 
         this.setState({
+            keyCook: true,
             addClicked: !this.state.addClicked,
             nameColl: '',
             nameDescrip: '',
@@ -165,6 +170,7 @@ class PersonalAPage extends Component {
     onFocusField() {
         const pagination = this.state.addClicked ? ["pagination", "move-coll"] : ["pagination"]
         this.setState({
+          keyCook: true,
           status: [],
           statusColl: ["form-control coll"],
           statusDescrip: ["form-control coll"],
@@ -190,6 +196,7 @@ class PersonalAPage extends Component {
                 .then(res => {
                   if (res.data==="Collection already exists") {
                     this.setState({
+                      keyCook: true,
                       status: ["Coll-exists"],
                       statusColl: ["form-control coll", "error"],
                       collectionsStatus: ["collectionsStatus", "move", "err"],
@@ -257,6 +264,7 @@ class PersonalAPage extends Component {
       }
       
       axios.post('https://tapeghadkpserver.herokuapp.com/collections/delete', collection).then(res => {
+        this.setState({keyCook: true})
           if (res.data==="Ok") this.isCollectionsExists()
           else {
             this.isCollectionsExists()
@@ -266,7 +274,8 @@ class PersonalAPage extends Component {
 
     onChangePage (page) {
       this.setState({
-          currPage: page
+          currPage: page,
+          keyCook: true
       })
   }
 
@@ -358,7 +367,8 @@ class PersonalAPage extends Component {
       axios.post('https://tapeghadkpserver.herokuapp.com/users/block', user).then(res => {
         this.AdminUsersList()
         this.setState({
-          keyUsers: true
+          keyUsers: true,
+          keyCook: true,
         })
     })
     }
@@ -370,7 +380,8 @@ class PersonalAPage extends Component {
       axios.post('https://tapeghadkpserver.herokuapp.com/users/unblock', user).then(res => {
         this.AdminUsersList()
         this.setState({
-          keyUsers: true
+          keyUsers: true,
+          keyCook: true,
         })
     })
     
@@ -383,7 +394,8 @@ class PersonalAPage extends Component {
       axios.post('https://tapeghadkpserver.herokuapp.com/users/delete', user).then(res => {
         this.AdminUsersList()
         this.setState({
-          keyUsers: true
+          keyUsers: true,
+          keyCook: true,
         })
     })
     }
@@ -393,7 +405,7 @@ class PersonalAPage extends Component {
         return (
         <div className="personalA-page">
           {this.state.keyUsers ? this.GetAdminUsersList() : null}
-          {this.CheckCookies()}
+          {this.state.keyCook ? this.CheckCookies() : null}
           
             {this.props.authorized!=="admin" ?
             <>

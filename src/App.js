@@ -36,8 +36,9 @@ auhtorizedChangeHandler =(name, email) => {
 
   render () {
     const authorized = this.state.authorized
+    const authorizedChange = this.auhtorizedChangeHandler.bind(this);
     const CollectionItemsProps = function(props) {
-      return (<CollectionItems {...props} authorized={authorized}/>);
+      return (<CollectionItems {...props} authorized={authorized} authorizedChange={authorizedChange}/>);
   };
 
     const goto = this.state.goto;
@@ -67,22 +68,20 @@ auhtorizedChangeHandler =(name, email) => {
             <Route path="/" exact>
                 <MainPage
                     authorized={this.state.authorized}
+                    authorizedChange={this.auhtorizedChangeHandler.bind(this)}
                   />
               </Route>
                 {this.state.authorized.length>=3 ?
                   <Route path="/personal-area" exact>
                     <PersonalAPage
                       authorized={this.state.authorized}
+                      authorizedChange={this.auhtorizedChangeHandler.bind(this)}
                       email={this.state.email}
                     />
                   </Route>
                    : null}
             <Route path="/collection/:name" exact component={CollectionItemsProps}/>
             <Route path="/collection/:name/:item" exact component={CollectionItemsProps}/>
-            
-              
-             
-           
             <Redirect exact to="/"/>
           </Switch>
         </div>

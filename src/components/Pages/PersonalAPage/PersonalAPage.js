@@ -7,6 +7,7 @@ import CollHeader from './CollHeader/CollHeader';
 import AddColl from './AddCollOffer/AddColl';
 import CreateCollBlock from "./CreateCollBlock/CreateCollBlock"
 import { Link } from 'react-router-dom';
+import Cookies from "js-cookies";
 
 
 
@@ -25,6 +26,11 @@ class PersonalAPage extends Component {
         this.CollectionList=this.CollectionList.bind(this);
         this.Pagination = this.Pagination.bind(this);
         this.onChangePage = this.onChangePage.bind(this);
+        this.AdminUsersList = this.AdminUsersList.bind(this);
+        this.BlockUser = this.BlockUser.bind(this);
+        this.BanUser = this.BanUser.bind(this);
+        this.UnblockUser = this.UnblockUser.bind(this);
+        
 
 
         this.state = {
@@ -45,9 +51,28 @@ class PersonalAPage extends Component {
           pagination: ["pagination"],
           currPage: 1,
           CollPerPage: 5,
-          pages: 0
+          pages: 0,
+          usersList: []
         }
       }
+
+      CheckCookies () {
+        if (this.props.authorized.length>=3){
+          const user = {
+            username: this.props.authorized
+          }
+          axios.post('https://tapeghadkpserver.herokuapp.com/users/confirmCookie', user)
+          .then(res => {
+            if (res.data==="Exists") {}
+            if (res.data==="Not Exists") {
+             
+                this.props.authorizedChange('s', 's');
+              
+            Cookies.removeItem("authorized")
+            Cookies.removeItem("email")
+            }
+          });
+      }}
 
     TopicsList() {
         return this.state.topics.map((topic, index) =>{
@@ -269,12 +294,92 @@ class PersonalAPage extends Component {
               })
     }
 
+    AdminUsersList() {
+      
+      axios.get('https://tapeghadkpserver.herokuapp.com/users/test').then(res => {
+          
+            this.setState({
+               usersList: res.data
+            })
+        })
+
+        // for (let iter=0; iter<=this.state.usersList.length; iter+=3)
+        let iter = -1;
+      return this.state.usersList.map((user, index) => {
+        iter+=1;
+        if (iter%3===0 || iter%3===3){
+          if  (user.username!=="admin") {
+        return (
+          <div className="admin-main-us">
+                      <div className="admin-main-small-table" style={{ padding: "5px 0 0 15px",width: "40%", borderWidth: "0"}}>
+                        <h2>{user.username}</h2>
+                      </div>
+                      <div className="admin-main-small-table" >
+                        <h2>{this.state.usersList[iter+1]}</h2>
+                      </div>
+                      <div className="admin-main-small-table" >
+                        <h2>{this.state.usersList[iter+2]}</h2>
+                      </div>
+                      <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width:"10%"}}>
+                        {user.status===1 
+                          ? <i class="fa fa-lock" onClick={this.BlockUser.bind(this, user.username)}></i>
+                          : <i class="fa fa-unlock" onClick={this.UnblockUser.bind(this, user.username)}></i>}
+                      </div>
+                      <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width:"10%"}} >
+                        <i className="fa fa-user-times" title="Delete User" onClick={this.BanUser.bind(this, user.username)}></i>
+                      </div>
+          </div>
+        )}
+        else {
+          return (
+            <div></div>
+          )
+        }
+        }
+        else {
+          return (
+            <div></div>
+          )
+        }
+        
+      })
+    }
+
+    BlockUser (username) {
+      const user = {
+        username: username
+      }
+      axios.post('https://tapeghadkpserver.herokuapp.com/users/block', user).then(res => {
+        this.AdminUsersList()
+    })
+    }
+
+    UnblockUser (username) {
+      const user = {
+        username: username
+      }
+      axios.post('https://tapeghadkpserver.herokuapp.com/users/unblock', user).then(res => {
+        this.AdminUsersList()
+    })
+    }
+
+    BanUser (username) {
+      const user = {
+        username: username
+      }
+      axios.post('https://tapeghadkpserver.herokuapp.com/users/delete', user).then(res => {
+        this.AdminUsersList()
+    })
+    }
       
     
     render () {
         return (
         <div className="personalA-page">
-            {this.state.key ? this.isCollectionsExists() : null}
+          {this.CheckCookies()}
+            {this.props.authorized!=="admin" ?
+            <>
+              {this.state.key ? this.isCollectionsExists() : null}
             <PersonalInfo 
                 username={this.state.username}
                 email={this.state.email}
@@ -377,6 +482,31 @@ class PersonalAPage extends Component {
                 }
 
             </div>
+            </>
+            : <div className="admin-pa">
+                <div className="admin-main-block">
+                  <div className="admin-main-header"> 
+                    <div className="admin-main-small-table" style={{ padding: "5px 0 0 15px",width: "40%", borderWidth: "0"}}>
+                      <h2>User</h2>
+                    </div>
+                    <div className="admin-main-small-table" >
+                      <h2>Collections</h2>
+                    </div>
+                    <div className="admin-main-small-table" >
+                      <h2>Items</h2>
+                    </div>
+                    <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width: "10%"}}>
+                      <h2>Block</h2>
+                    </div>
+                    <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width: "10%"}}>
+                      <h2>Delete</h2>
+                    </div>
+                  </div>
+                  
+                  {this.AdminUsersList()}
+                  
+                </div>
+              </div>}
         </div>)
     }
 }

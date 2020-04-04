@@ -9,6 +9,8 @@ const LoginForm = props => (
            <Warning status="Successfully" word="Successfully"/>
            :props.currStatus.includes("Invalid-data") ? 
            <Warning status="Invalid-data" word="Incorrect data"/>
+           : props.currStatus.includes("Blocked") ? 
+           <Warning status="Invalid-data" word="Blocked"/>
            : null}
           <form onSubmit={props.onSubmitRegister}>
           <div className="form-group">

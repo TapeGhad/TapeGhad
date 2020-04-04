@@ -5,7 +5,8 @@ import "./CollectionItems.css"
 import { Redirect } from 'react-router-dom';
 import CollectionHeader from './CollectionHeader/CollectionHeader';
 import AddItemBlock from './AddItemBlock/AddItemBlock';
-import Warning from "../MenuBlock/Warning/Warning"
+import Warning from "../MenuBlock/Warning/Warning";
+import Cookies from "js-cookies";
 
 
 class CollectionItems extends Component {
@@ -106,6 +107,23 @@ class CollectionItems extends Component {
             searchKey: true
         }
       }
+      CheckCookies () {
+        if (this.props.authorized.length>=3){
+          const user = {
+            username: this.props.authorized
+          }
+          axios.post('https://tapeghadkpserver.herokuapp.com/users/confirmCookie', user)
+          .then(res => {
+            if (res.data==="Exists") {}
+            if (res.data==="Not Exists") {
+             
+                this.props.authorizedChange('s', 's');
+              
+            Cookies.removeItem("authorized")
+            Cookies.removeItem("email")
+            }
+          });
+      }}
 
     onAddClickHandler() {
         axios.get('https://tapeghadkpserver.herokuapp.com/tags').then(res => {
@@ -1078,6 +1096,7 @@ class CollectionItems extends Component {
 
            return (
                <div className="collection-page" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                   {this.CheckCookies()}
                 {this.state.goto==="on" ? <Redirect exact to={`/collection/${this.state.editnameColl}`}  {...this.setState({goto: ""})}/> : null}
                 {this.state.redirect==="1" ? <Redirect exact to="/"/> :
                     this.state.redirect==="00" ?

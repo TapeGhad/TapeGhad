@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import "./MainPage.css";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Cookies from "js-cookies"
 
 class MainPage extends Component {
     _isMounted = false;
@@ -39,6 +40,24 @@ class MainPage extends Component {
             currComentItem: ""
         }
       }
+
+      CheckCookies () {
+        if (this.props.authorized.length>=3){
+          const user = {
+            username: this.props.authorized
+          }
+          axios.post('https://tapeghadkpserver.herokuapp.com/users/confirmCookie', user)
+          .then(res => {
+            if (res.data==="Exists") {}
+            if (res.data==="Not Exists") {
+             
+                this.props.authorizedChange('s', 's');
+              
+            Cookies.removeItem("authorized")
+            Cookies.removeItem("email")
+            }
+          });
+      }}
 
     isCollectionsExists () {
         axios.get('https://tapeghadkpserver.herokuapp.com/collections').then(res => {
@@ -336,6 +355,7 @@ class MainPage extends Component {
       render() { 
         return (
                 <div className="main-page">
+                    {this.CheckCookies()}
                     {this.state.keyColl ? this.isCollectionsExists() : null}
                     {this.state.keyItem ? this.isItemsExists() : null}
 

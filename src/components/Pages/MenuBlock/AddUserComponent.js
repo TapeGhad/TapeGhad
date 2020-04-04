@@ -180,6 +180,14 @@ export default class CreateUser extends Component {
     axios.post('https://tapeghadkpserver.herokuapp.com/users/checkUserData', user)
       .then(res => {
         if (res.data!=="Incorrect data.") {
+          if (res.data==="Blocked") {
+            this.setState({
+              status: ["Blocked"],
+              nameClU: ["form-control", "error"],
+              nameClP: ["form-control", "error"]
+            })
+          }
+          else {
           Cookies.setItem("authorized", user.username, {expires: 1})
           Cookies.setItem("email", res.data, {expires: 1})
           this.props.authorizedChange(user.username, res.data);
@@ -193,6 +201,7 @@ export default class CreateUser extends Component {
             nameClP: ["form-control"],
             nameClCP: ["form-control"]
           })
+          }
         }
         else {
           this.setState({

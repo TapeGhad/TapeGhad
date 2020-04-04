@@ -647,7 +647,7 @@
     }
    }
 
-@media screen and (max-width: 675px) {
+@media screen and (max-width: 700px) {
     .collection-header {
         width: 95%;
     }
@@ -657,9 +657,6 @@
     .collection-page hr {
         width: 95%;
     }
-   }
-
-@media screen and (max-width: 700px) {
     .tags-input.filtr {
         flex-direction: column;
     }
@@ -672,14 +669,25 @@
         flex-direction: column;
         align-items: center;
     }
-   }
-
-@media screen and (max-width: 510px) {
     .add-item-cont {
         top: 500px;
     }
+   }
+
+@media screen and (max-width: 510px) {
+   
     .descrip-redacting {
         flex-direction: column;
+    }
+   }
+
+@media screen and (max-width: 596px) {
+   
+    .descrip-redacting {
+        flex-direction: column;
+    }
+    .add-item-cont {
+        top: 530px;
     }
    }
 

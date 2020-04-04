@@ -311,7 +311,7 @@ class PersonalAPage extends Component {
           if  (user.username!=="admin") {
         return (
           <div className="admin-main-us">
-                      <div className="admin-main-small-table" style={{ padding: "5px 0 0 15px",width: "40%", borderWidth: "0"}}>
+                      <div className="admin-main-small-table" style={{ padding: "5px 0 0 15px",width: "30%", borderWidth: "0"}}>
                         <h2>{user.username}</h2>
                       </div>
                       <div className="admin-main-small-table" >
@@ -320,12 +320,12 @@ class PersonalAPage extends Component {
                       <div className="admin-main-small-table" >
                         <h2>{this.state.usersList[iter+2]}</h2>
                       </div>
-                      <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width:"10%"}}>
+                      <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width:"15%"}}>
                         {user.status===1 
                           ? <i class="fa fa-lock" onClick={this.BlockUser.bind(this, user.username)}></i>
                           : <i class="fa fa-unlock" onClick={this.UnblockUser.bind(this, user.username)}></i>}
                       </div>
-                      <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width:"10%"}} >
+                      <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width:"15%"}} >
                         <i className="fa fa-user-times" title="Delete User" onClick={this.BanUser.bind(this, user.username)}></i>
                       </div>
           </div>
@@ -486,7 +486,7 @@ class PersonalAPage extends Component {
             : <div className="admin-pa">
                 <div className="admin-main-block">
                   <div className="admin-main-header"> 
-                    <div className="admin-main-small-table" style={{ padding: "5px 0 0 15px",width: "40%", borderWidth: "0"}}>
+                    <div className="admin-main-small-table" style={{ padding: "5px 0 0 15px",width: "30%", borderWidth: "0"}}>
                       <h2>User</h2>
                     </div>
                     <div className="admin-main-small-table" >
@@ -495,10 +495,10 @@ class PersonalAPage extends Component {
                     <div className="admin-main-small-table" >
                       <h2>Items</h2>
                     </div>
-                    <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width: "10%"}}>
+                    <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width: "15%"}}>
                       <h2>Block</h2>
                     </div>
-                    <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width: "10%"}}>
+                    <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width: "15%"}}>
                       <h2>Delete</h2>
                     </div>
                   </div>

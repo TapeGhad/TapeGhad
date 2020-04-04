@@ -102,7 +102,7 @@ export default class CreateUser extends Component {
     if (this.state.password===this.state.confirmpassword) {
       if (this.state.password.length >= 5) {
         if (is.email(this.state.email)) {
-          if (this.state.username.length >=3) {
+          if (this.state.username.length >=3 && this.state.username.length <=10) {
         const user = {
           username: this.state.username,
           password: this.state.password,

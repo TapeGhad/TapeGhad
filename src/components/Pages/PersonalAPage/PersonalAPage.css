@@ -485,3 +485,38 @@
     }
    }
 
+   @media screen and (max-width: 1080px) {
+    .admin-main-block h2 {
+        font-size: 25px;
+    }
+   } 
+
+   @media screen and (max-width: 850px) {
+    .admin-main-block h2 {
+        font-size: 20px;
+    }
+    .fa-lock, .fa-unlock, .fa-user-times {
+        font-size: 20px;
+    }
+    
+    .fa-lock:hover, .fa-unlock:hover, .fa-user-times:hover {
+        font-size: 23px;
+    }
+   } 
+
+   @media screen and (max-width: 700px) {
+    .admin-main-block h2 {
+        font-size: 15px;
+    }
+    .admin-main-block h2 {
+        font-size: 15px;
+    }
+    .fa-lock, .fa-unlock, .fa-user-times {
+        font-size: 15px;
+    }
+    
+    .fa-lock:hover, .fa-unlock:hover, .fa-user-times:hover {
+        font-size: 18px;
+    }
+
+   } 

@@ -10,7 +10,7 @@ const RegisterForm = props => (
            :props.currStatus.includes("Invalid-data") ? 
            <Warning status="Invalid-data" word="Incorrect data"/>
            :props.currStatus.includes("User-short") ?
-           <Warning status="Invalid-data" word="Login is too short (3 min)"/>
+           <Warning status="Invalid-data" word="Incorrect login (3-15)"/>
            :props.currStatus.includes("Diff-pass") ?
            <Warning status="Invalid-data" word="Different passwords"/>
            :props.currStatus.includes("Email-err") ?

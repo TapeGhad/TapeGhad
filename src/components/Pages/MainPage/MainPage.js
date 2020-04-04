@@ -355,6 +355,7 @@ class MainPage extends Component {
       render() { 
         return (
                 <div className="main-page">
+                    {console.log("111")}
                     {this.CheckCookies()}
                     {this.state.keyColl ? this.isCollectionsExists() : null}
                     {this.state.keyItem ? this.isItemsExists() : null}

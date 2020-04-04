@@ -1096,6 +1096,7 @@ class CollectionItems extends Component {
 
            return (
                <div className="collection-page" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                   {console.log("111")}
                    {this.CheckCookies()}
                 {this.state.goto==="on" ? <Redirect exact to={`/collection/${this.state.editnameColl}`}  {...this.setState({goto: ""})}/> : null}
                 {this.state.redirect==="1" ? <Redirect exact to="/"/> :

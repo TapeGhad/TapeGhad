@@ -336,9 +336,9 @@ class PersonalAPage extends Component {
                         <h2>{this.state.usersList[iter+2]}</h2>
                       </div>
                       <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width:"15%"}}>
-                        {user.status===1 
-                          ? <i className="fa fa-lock" onClick={this.BlockUser.bind(this, user.username)}></i>
-                          : <i className="fa fa-unlock" onClick={this.UnblockUser.bind(this, user.username)}></i>}
+                        {user.status===1
+                          ? <i className="fa fa-unlock" onClick={this.BlockUser.bind(this, user.username)}></i>
+                          : <i className="fa fa-lock" onClick={this.UnblockUser.bind(this, user.username)}></i>}
                       </div>
                       <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width:"15%"}} >
                         <i className="fa fa-user-times" title="Delete User" onClick={this.BanUser.bind(this, user.username)}></i>
@@ -404,6 +404,7 @@ class PersonalAPage extends Component {
     render () {
         return (
         <div className="personalA-page">
+          {console.log("111")}
           {this.state.keyUsers ? this.GetAdminUsersList() : null}
           {this.state.keyCook ? this.CheckCookies() : null}
           

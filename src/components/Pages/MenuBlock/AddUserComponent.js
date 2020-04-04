@@ -243,6 +243,7 @@ export default class CreateUser extends Component {
   render() {
     return (
       <div className={this.props.className}>
+        {console.log("111")}
           {this.CheckCookies()}
           {this.props.authorized.length<=3 ?
           !this.state.login_form ?

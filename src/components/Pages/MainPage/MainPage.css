@@ -59,7 +59,7 @@
 .topic-alcohol, .topic-books, .topic-music, .topic-cars {
     display: flex;
     flex-direction: row;
-    background-image: url('http://localhost:5000/download/Alcohol');
+    background-image: url('http://https://tapeghadkpserver.herokuapp.com/download/Alcohol');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;

@@ -257,7 +257,7 @@
 }
 
 .topic-alcohol, .topic-books, .topic-music, .topic-cars {
-    background-image: url('http://localhost:5000/download/Alcohol');
+    background-image: url('https://tapeghadkpserver.herokuapp.com/download/Alcohol');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;

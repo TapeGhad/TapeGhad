@@ -59,25 +59,13 @@
 .topic-alcohol, .topic-books, .topic-music, .topic-cars {
     display: flex;
     flex-direction: row;
-    background-image: url('../../../logo/Alcohol.png');
+    background-image: url('http://localhost:5000/download/Alcohol');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     width: 100px;
     height: auto;
     margin-top: 0px
-}
-
-.topic-books {
-    background-image: url('../../../logo/Book.png');
-}
-
-.topic-music {
-    background-image: url('../../../logo/Music.png');
-}
-
-.topic-cars {
-    background-image: url('../../../logo/Cars.png');
 }
 
 .collection-block-main h2 {

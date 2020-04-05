@@ -115,13 +115,7 @@ class MainPage extends Component {
                             :null}
                         {coll.topic==="Alcohol" 
                             ?<div className="topic-alcohol"></div>
-                            : coll.topic==="Books" 
-                            ?<div className="topic-books"></div>
-                            : coll.topic==="Music" 
-                            ?<div className="topic-music"></div>
-                            :coll.topic==="Cars" 
-                            ?<div className="topic-cars"></div>
-                            :null } 
+                            : <div className="topic-alcohol" style={{backgroundImage: `url('http://localhost:5000/download/${coll.topic}')`}}></div>} 
                         {this.props.authorized==="admin" 
                         ?
                         <div style={{display:"flex", flexDirection:"column"}}>

@@ -9,7 +9,11 @@ import CreateCollBlock from "./CreateCollBlock/CreateCollBlock"
 import { Link } from 'react-router-dom';
 import Cookies from "js-cookies";
 
-
+// async function asyncForEach(array, callback) {
+//   for (let index = 0; index < array.length; index++) {
+//     await callback(array[index], index, array);
+//   }
+// }
 
 class PersonalAPage extends Component {
     constructor(props) {
@@ -31,6 +35,9 @@ class PersonalAPage extends Component {
         this.BanUser = this.BanUser.bind(this);
         this.UnblockUser = this.UnblockUser.bind(this);
         this.GetAdminUsersList = this.GetAdminUsersList.bind(this);
+        this.onChangeImage = this.onChangeImage.bind(this);
+        this.onChangeAdminTopic = this.onChangeAdminTopic.bind(this);
+        this.AddTopic = this.AddTopic.bind(this);
         
         
 
@@ -56,7 +63,10 @@ class PersonalAPage extends Component {
           currPage: 1,
           CollPerPage: 5,
           pages: 0,
-          usersList: []
+          usersList: [],
+          image: '',
+          adminTopic: '',
+          images: []
         }
       }
 
@@ -105,13 +115,7 @@ class PersonalAPage extends Component {
               </div>
               {coll.topic==="Alcohol" 
                 ?<div className="topic-alcohol"></div>
-                : coll.topic==="Books" 
-                ?<div className="topic-books"></div>
-                : coll.topic==="Music" 
-                ?<div className="topic-music"></div>
-                :coll.topic==="Cars" 
-                ?<div className="topic-cars"></div>
-                :null } 
+                :<div className="topic-alcohol" style={{backgroundImage: `url('http://localhost:5000/download/${coll.topic}')`}}></div>}
                 <div style={{display:"flex", flexDirection:"column"}}>
                     <button type="button" className="delete-coll" onClick={this.deleteCollection.bind(this, coll.name)} styele={{marginTop: "auto"}}>×</button>
                 </div>
@@ -165,6 +169,12 @@ class PersonalAPage extends Component {
             statusTopic: ["form-control coll"],
             status: []
         })
+      }
+
+      onChangeAdminTopic(e) {
+        this.setState({
+          adminTopic: e.target.value
+      })
       }
 
     onFocusField() {
@@ -248,13 +258,34 @@ class PersonalAPage extends Component {
       const user = {
         owner: this.props.authorized
       }
-      axios.post('https://tapeghadkpserver.herokuapp.com/collections/owner', user).then(res => {
+      axios.post('https://tapeghadkpserver.herokuapp.com/collections/owner', user).then(async res => {
           const pages = Math.ceil(res.data.length / this.state.CollPerPage)
             this.setState({
                 collections: res.data,
                 key: false,
                 pages: pages
             })
+          // await asyncForEach(res.data, async collection => {
+          //   let Coll = {
+          //     imageName: collection.topic
+          //   }
+          //   axios.post(`http://localhost:5000/getImage`, Coll).then(async image =>{
+          //     let reader = new FileReader();
+          //     reader.onloadend = (e) => {
+          //       let currImages = this.state.images;
+          //       let obj = {
+          //         topic: collection.topic,
+          //         image: [reader.result]
+          //       }
+          //       currImages = currImages.push(obj)
+          //       this.setState({
+          //         images: currImages
+          //       });
+          //     }
+              
+          //   })
+          // })
+          // console.log("Images:",this.state.images)
         })
     }
 
@@ -399,6 +430,35 @@ class PersonalAPage extends Component {
         })
     })
     }
+
+    onChangeImage(e) {
+      e.preventDefault();
+
+      let file = e.target.files[0];
+      let reader = new FileReader();
+
+      if (e.target.files.length === 0) {
+        return;
+      }
+      reader.onloadend = (e) => {
+        this.setState({
+          image: [reader.result]
+        });
+      }
+
+      reader.readAsDataURL(file);
+    }
+
+    AddTopic() {
+      const Topic = {
+        nameTopic: this.state.adminTopic
+      }
+      axios.post('http://localhost:5000/topics/add', Topic).then(res => {
+        this.setState({
+          adminTopic: ''
+        })
+    })
+  }
       
     
     render () {
@@ -514,7 +574,7 @@ class PersonalAPage extends Component {
 
             </div>
             </>
-            : <div className="admin-pa">
+            : <div className="admin-pa" >
                 <div className="admin-main-block">
                   <div className="admin-main-header"> 
                     <div className="admin-main-small-table" style={{ padding: "5px 0 0 15px",width: "30%", borderWidth: "0"}}>
@@ -537,6 +597,20 @@ class PersonalAPage extends Component {
                   {this.AdminUsersList()}
                   
                 </div>
+                <div style={{border:"2px solid #fff", marginTop:"20px", padding: "10px"}} onDrop>
+                  <form action="http://localhost:5000/upload" method="post" enctype="multipart/form-data" style={{color: "#fff"}}>
+                    <label>Add Image.png to topic (Both names MUST be indentical)</label><br/>
+                    <input type="file" name="filedata" onChange={this.onChangeImage}/><br></br>
+                    <input type="submit" value="Send" />
+                  </form>
+                  <h1 style={{color: "#fff"}}>Preview</h1>
+                  <img src={this.state.image} alt="" style={{maxWidth: "200px", maxHeight:"200px"}}/>
+                </div>
+                <div style={{border:"2px solid #fff", marginTop:"20px", padding: "10px"}}>
+                  <input type="text" placeholder="Add Topic" value={this.state.adminTopic} onChange={this.onChangeAdminTopic}/><br></br>
+                  <button onClick={this.AddTopic}>Add Topic</button>
+                </div>
+                
               </div>}
         </div>)
     }

@@ -9,6 +9,7 @@ import CreateCollBlock from "./CreateCollBlock/CreateCollBlock"
 import { Link } from 'react-router-dom';
 import Cookies from "js-cookies";
 
+
 // async function asyncForEach(array, callback) {
 //   for (let index = 0; index < array.length; index++) {
 //     await callback(array[index], index, array);
@@ -38,6 +39,7 @@ class PersonalAPage extends Component {
         this.onChangeImage = this.onChangeImage.bind(this);
         this.onChangeAdminTopic = this.onChangeAdminTopic.bind(this);
         this.AddTopic = this.AddTopic.bind(this);
+        
         
         
 
@@ -115,7 +117,7 @@ class PersonalAPage extends Component {
               </div>
               {coll.topic==="Alcohol" 
                 ?<div className="topic-alcohol"></div>
-                :<div className="topic-alcohol" style={{backgroundImage: `url('http://localhost:5000/download/${coll.topic}')`}}></div>}
+                :<div className="topic-alcohol" style={{backgroundImage: `url('https://tapeghadkpserver.herokuapp.com/download/${coll.topic}')`}}></div>}
                 <div style={{display:"flex", flexDirection:"column"}}>
                     <button type="button" className="delete-coll" onClick={this.deleteCollection.bind(this, coll.name)} styele={{marginTop: "auto"}}>×</button>
                 </div>
@@ -265,27 +267,7 @@ class PersonalAPage extends Component {
                 key: false,
                 pages: pages
             })
-          // await asyncForEach(res.data, async collection => {
-          //   let Coll = {
-          //     imageName: collection.topic
-          //   }
-          //   axios.post(`http://localhost:5000/getImage`, Coll).then(async image =>{
-          //     let reader = new FileReader();
-          //     reader.onloadend = (e) => {
-          //       let currImages = this.state.images;
-          //       let obj = {
-          //         topic: collection.topic,
-          //         image: [reader.result]
-          //       }
-          //       currImages = currImages.push(obj)
-          //       this.setState({
-          //         images: currImages
-          //       });
-          //     }
-              
-          //   })
-          // })
-          // console.log("Images:",this.state.images)
+          
         })
     }
 
@@ -378,13 +360,13 @@ class PersonalAPage extends Component {
         )}
         else {
           return (
-            <div></div>
+            null
           )
         }
         }
         else {
           return (
-            <div></div>
+            null
           )
         }
         
@@ -433,8 +415,9 @@ class PersonalAPage extends Component {
 
     onChangeImage(e) {
       e.preventDefault();
-
+     
       let file = e.target.files[0];
+      console.log(file);
       let reader = new FileReader();
 
       if (e.target.files.length === 0) {
@@ -453,7 +436,7 @@ class PersonalAPage extends Component {
       const Topic = {
         nameTopic: this.state.adminTopic
       }
-      axios.post('http://localhost:5000/topics/add', Topic).then(res => {
+      axios.post('https://tapeghadkpserver.herokuapp.com/topics/add', Topic).then(res => {
         this.setState({
           adminTopic: ''
         })
@@ -597,20 +580,20 @@ class PersonalAPage extends Component {
                   {this.AdminUsersList()}
                   
                 </div>
-                <div style={{border:"2px solid #fff", marginTop:"20px", padding: "10px"}} onDrop>
-                  <form action="http://localhost:5000/upload" method="post" enctype="multipart/form-data" style={{color: "#fff"}}>
-                    <label>Add Image.png to topic (Both names MUST be indentical)</label><br/>
-                    <input type="file" name="filedata" onChange={this.onChangeImage}/><br></br>
-                    <input type="submit" value="Send" />
-                  </form>
-                  <h1 style={{color: "#fff"}}>Preview</h1>
-                  <img src={this.state.image} alt="" style={{maxWidth: "200px", maxHeight:"200px"}}/>
-                </div>
-                <div style={{border:"2px solid #fff", marginTop:"20px", padding: "10px"}}>
+                    <div style={{border:"2px solid #fff",borderRadius:"15px", marginTop:"20px", padding: "15px"}}>
+                      <form method="post" encType="multipart/form-data" style={{color: "#fff"}}>
+                        <label style={{fontSize:"20px"}}>Add <h4 style={{fontFamily: 'Trebuchet MS', textDecoration: "underline"}}>Image.png</h4> to topic (Both names MUST be identical)</label><br/>
+                        <input type="file" name="filedata"  onChange={this.onChangeImage}/><br></br>
+                        <input type="submit" value="Send" formAction="https://tapeghadkpserver.herokuapp.com/upload" />
+                      </form>
+                      <h1 style={{color: "#fff"}}>Preview</h1>
+                      <img src={this.state.image} alt="" style={{maxWidth: "200px", maxHeight:"200px"}}/>
+                    </div>
+                <div style={{border:"2px solid #fff", marginTop:"20px", padding: "15px",borderRadius:"15px"}}>
                   <input type="text" placeholder="Add Topic" value={this.state.adminTopic} onChange={this.onChangeAdminTopic}/><br></br>
                   <button onClick={this.AddTopic}>Add Topic</button>
                 </div>
-                
+               
               </div>}
         </div>)
     }

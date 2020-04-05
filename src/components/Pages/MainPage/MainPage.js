@@ -115,7 +115,7 @@ class MainPage extends Component {
                             :null}
                         {coll.topic==="Alcohol" 
                             ?<div className="topic-alcohol"></div>
-                            : <div className="topic-alcohol" style={{backgroundImage: `url('http://localhost:5000/download/${coll.topic}')`}}></div>} 
+                            : <div className="topic-alcohol" style={{backgroundImage: `url('https://tapeghadkpserver.herokuapp.com/${coll.topic}')`}}></div>} 
                         {this.props.authorized==="admin" 
                         ?
                         <div style={{display:"flex", flexDirection:"column"}}>

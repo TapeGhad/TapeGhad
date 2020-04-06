@@ -114,19 +114,6 @@ class CollectionItems extends Component {
           const user = {
             username: this.props.authorized
           }
-          axios.post('https://tapeghadkpserver.herokuapp.com/users/checkAccess', user)
-          .then(res => {
-            if (res.data==="Admin") {
-                this.setState({
-                statusAccess: 2
-                })
-              }
-              else {
-                this.setState({
-                    statusAccess: 1
-                })
-              }
-          })
           axios.post('https://tapeghadkpserver.herokuapp.com/users/confirmCookie', user)
           .then(res => {
             if (res.data==="Exists") {}

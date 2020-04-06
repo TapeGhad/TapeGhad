@@ -363,7 +363,7 @@ class MainPage extends Component {
             this.isItemsExists();
             this.isCollectionsExists();
             this.CheckAccess();
-        }, 3000);
+        }, 5000);
       }
 
       componentWillUnmount() {

@@ -1062,7 +1062,7 @@ class CollectionItems extends Component {
        this.state.counter > 0 && setInterval(() => {
         this.isItemsExists();
         this.CheckAccess();
-    }, 3000);
+    }, 5000);
        
         const { match: { params } } = this.props;
         if (this.state.searchKey) {

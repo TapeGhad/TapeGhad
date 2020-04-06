@@ -1118,6 +1118,7 @@ class CollectionItems extends Component {
                     <>
                     {this.state.key ? this.isItemsExists() : null}
                      <CollectionHeader 
+                     statusAccess={this.state.statusAccess}
                         editColl={this.state.editColl}
                         status={this.state.status}
                         nameColl={this.state.nameColl}

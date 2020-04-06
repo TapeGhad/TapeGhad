@@ -13,7 +13,7 @@ const CollectionHeader = props => (
                                 <h1 style={{textShadow: "5px 5px 15px black"}}>Collection: {props.nameColl} 
                                     {props.authorized===props.owner 
                                     ?<i className="fa fa-edit edit-toggle" onClick={props.onEditCollHandler}></i>
-                                    :props.authorized==="admin"
+                                    :props.authorized==="admin" ||props.statusAccess ===2
                                     ?<i className="fa fa-edit edit-toggle" onClick={props.onEditCollHandler}></i>
                                     :null}
                                 </h1>
@@ -60,7 +60,7 @@ const CollectionHeader = props => (
                         <div className="collection-status">
                             {props.authorized===props.owner 
                             ? <h2 style={{color: "rgb(71, 230, 71)", textDecoration: "underline",textShadow: "3px 3px 15px black"}}>It's your collection</h2>
-                            : props.authorized==="admin"
+                            : props.authorized==="admin" ||props.statusAccess ===2
                             ?<h2 style={{color: "rgb(71, 230, 71)", textDecoration: "underline",textShadow: "3px 3px 15px black"}}>Admin Access</h2>
                             :<h2 style={{color: "rgb(255, 56, 56)", textDecoration: "underline",textShadow: "3px 3px 15px black"}}>It's not your collection</h2>
                             }

@@ -141,6 +141,9 @@ class CollectionItems extends Component {
       }}
 
       CheckAccess() {
+        const user = {
+            username: this.props.authorized
+          }
         axios.post('https://tapeghadkpserver.herokuapp.com/users/checkAccess', user)
         .then(res => {
             if (res.data==="Admin") {

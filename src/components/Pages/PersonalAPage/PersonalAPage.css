@@ -395,6 +395,23 @@
     font-size: 33px;
 }
 
+.fa-magic, .fa-user {
+    color:rgb(145, 255, 0);
+    font-size: 30px;
+    margin-top:3px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.fa-user {
+    color:rgb(253, 240, 163);
+}
+
+.fa-magic:hover, .fa-user {
+    text-shadow: 2px 2px 15px rgb(0, 0, 0);
+    font-size: 33px;
+}
+
 
 @keyframes pagination{
         10%  { transform: rotate(-3deg); }

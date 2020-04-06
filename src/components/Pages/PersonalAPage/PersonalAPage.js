@@ -39,6 +39,8 @@ class PersonalAPage extends Component {
         this.onChangeImage = this.onChangeImage.bind(this);
         this.onChangeAdminTopic = this.onChangeAdminTopic.bind(this);
         this.AddTopic = this.AddTopic.bind(this);
+        this.MakeUsUser = this.MakeUsUser.bind(this);
+        this.MakeUsAdmin = this.MakeUsAdmin.bind(this);
         
         
         
@@ -73,10 +75,12 @@ class PersonalAPage extends Component {
       }
 
       CheckCookies () {
+        
         if (this.props.authorized.length>=3){
           const user = {
             username: this.props.authorized
           }
+          
           axios.post('https://tapeghadkpserver.herokuapp.com/users/confirmCookie', user)
           .then(res => {
             if (res.data==="Exists") {}
@@ -348,12 +352,17 @@ class PersonalAPage extends Component {
                       <div className="admin-main-small-table" >
                         <h2>{this.state.usersList[iter+2]}</h2>
                       </div>
-                      <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width:"15%"}}>
+                      <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width:"10%"}}>
+                      {user.statusAccess===2
+                          ? <i class="fa fa-magic" onClick={this.MakeUsUser.bind(this, user.username)}></i>
+                          : <i class="fa fa-user" onClick={this.MakeUsAdmin.bind(this, user.username)}></i>}
+                      </div>
+                      <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width:"10%"}}>
                         {user.status===1
                           ? <i className="fa fa-unlock" onClick={this.BlockUser.bind(this, user.username)}></i>
                           : <i className="fa fa-lock" onClick={this.UnblockUser.bind(this, user.username)}></i>}
                       </div>
-                      <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width:"15%"}} >
+                      <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width:"10%"}} >
                         <i className="fa fa-user-times" title="Delete User" onClick={this.BanUser.bind(this, user.username)}></i>
                       </div>
           </div>
@@ -371,6 +380,32 @@ class PersonalAPage extends Component {
         }
         
       })
+    }
+
+    MakeUsUser(username) {
+      const user = {
+        username: username
+      }
+      axios.post('https://tapeghadkpserver.herokuapp.com/users/user', user).then(res => {
+        this.AdminUsersList()
+        this.setState({
+          keyUsers: true,
+          keyCook: true,
+        })
+    })
+    }
+
+    MakeUsAdmin(username) {
+      const user = {
+        username: username
+      }
+      axios.post('https://tapeghadkpserver.herokuapp.com/users/admin', user).then(res => {
+        this.AdminUsersList()
+        this.setState({
+          keyUsers: true,
+          keyCook: true,
+        })
+    })
     }
 
     BlockUser (username) {
@@ -569,10 +604,13 @@ class PersonalAPage extends Component {
                     <div className="admin-main-small-table" >
                       <h2>Items</h2>
                     </div>
-                    <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width: "15%"}}>
+                    <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width: "10%"}}>
+                      <h2>Status</h2>
+                    </div>
+                    <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width: "10%"}}>
                       <h2>Block</h2>
                     </div>
-                    <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width: "15%"}}>
+                    <div className="admin-main-small-table" style={{ padding: "5px 10px 0 10px", width: "10%"}}>
                       <h2>Delete</h2>
                     </div>
                   </div>

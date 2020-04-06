@@ -37,7 +37,8 @@ class MainPage extends Component {
             items: [],
             commentNameItem: "",
             commentItem: false,
-            currComentItem: ""
+            currComentItem: "",
+            statusAccess: 1
         }
       }
 
@@ -46,6 +47,19 @@ class MainPage extends Component {
           const user = {
             username: this.props.authorized
           }
+          axios.post('https://tapeghadkpserver.herokuapp.com/users/checkAccess', user)
+          .then(res => {
+              if (res.data==="Admin") {
+                this.setState({
+                statusAccess: 2
+                })
+              }
+              else {
+                this.setState({
+                    statusAccess: 1
+                })
+              }
+          })
           axios.post('https://tapeghadkpserver.herokuapp.com/users/confirmCookie', user)
           .then(res => {
             if (res.data==="Exists") {}
@@ -116,7 +130,7 @@ class MainPage extends Component {
                         {coll.topic==="Alcohol" 
                             ?<div className="topic-alcohol"></div>
                             : <div className="topic-alcohol" style={{backgroundImage: `url('https://tapeghadkpserver.herokuapp.com/download/${coll.topic}')`}}></div>} 
-                        {this.props.authorized==="admin" 
+                        {this.props.authorized==="admin" || this.state.statusAccess===2
                         ?
                         <div style={{display:"flex", flexDirection:"column"}}>
                             <button type="button" className="delete-coll" onClick={this.deleteCollection.bind(this, coll.name)} styele={{marginTop: "auto"}}>×</button>

@@ -104,7 +104,8 @@ class CollectionItems extends Component {
             currEditItemTag: "",
             nameEditItem: "-!+56",
             currSearch: "",
-            searchKey: true
+            searchKey: true,
+            statusAccess: 1
         }
       }
       CheckCookies () {
@@ -112,6 +113,19 @@ class CollectionItems extends Component {
           const user = {
             username: this.props.authorized
           }
+          axios.post('https://tapeghadkpserver.herokuapp.com/users/checkAccess', user)
+          .then(res => {
+            if (res.data==="Admin") {
+                this.setState({
+                statusAccess: 2
+                })
+              }
+              else {
+                this.setState({
+                    statusAccess: 1
+                })
+              }
+          })
           axios.post('https://tapeghadkpserver.herokuapp.com/users/confirmCookie', user)
           .then(res => {
             if (res.data==="Exists") {}
@@ -819,7 +833,7 @@ class CollectionItems extends Component {
                                     ? this.state.editItemIcon.join(" ")==="fa fa-edit edit-toggle-item" 
                                         ?<i className={this.state.editItemIcon.join(" ")} style={{fontSize: "35px"}} onClick={this.onEditItemHandler.bind(this, item.name)}></i> 
                                         :<i className={this.state.editItemIcon.join(" ")} style={{fontSize: "35px"}}></i> 
-                                :this.state.authorized==="admin"
+                                :this.state.authorized==="admin" || this.state.statusAccess===2
                                     ? this.state.editItemIcon.join(" ")==="fa fa-edit edit-toggle-item" 
                                     ?<i className={this.state.editItemIcon.join(" ")} style={{fontSize: "35px"}} onClick={this.onEditItemHandler.bind(this, item.name)}></i> 
                                     :<i className={this.state.editItemIcon.join(" ")} style={{fontSize: "35px"}}></i> 
@@ -832,7 +846,7 @@ class CollectionItems extends Component {
                         this.state.editNameItem===item.name 
                         ? null
                         : <button type="button" className="deleteItem" onClick={this.deleteItem.bind(this, item.name)}>×</button>
-                        :this.props.authorized==="admin"
+                        :this.props.authorized==="admin" || this.state.statusAccess===2
                         ?this.state.editNameItem===item.name 
                             ? null
                             : <button type="button" className="deleteItem" onClick={this.deleteItem.bind(this, item.name)}>×</button>
@@ -1136,7 +1150,7 @@ class CollectionItems extends Component {
                         :
                         this.state.authorized===this.state.owner 
                         ? <button type="button" className="btn btn-success exists" onClick={this.onAddClickHandler}>Add+</button> 
-                        : this.state.authorized==="admin"
+                        : this.state.authorized==="admin" || this.state.statusAccess===2
                         ? <button type="button" className="btn btn-success exists" onClick={this.onAddClickHandler}>Add+</button> 
                         :null}
                         

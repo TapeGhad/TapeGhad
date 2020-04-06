@@ -50,6 +50,7 @@ class CollectionItems extends Component {
         this.onCloseCommentItem = this.onCloseCommentItem.bind(this);
         this.onCreateComment = this.onCreateComment.bind(this);
         this.onChangeSearch = this.onChangeSearch.bind(this);
+        this.CheckAccess = this.CheckAccess.bind(this);
    
 
         this.state = {
@@ -138,6 +139,23 @@ class CollectionItems extends Component {
             }
           });
       }}
+
+      CheckAccess() {
+        axios.post('https://tapeghadkpserver.herokuapp.com/users/checkAccess', user)
+        .then(res => {
+            if (res.data==="Admin") {
+              this.setState({
+              statusAccess: 2
+              })
+            }
+            else {
+              this.setState({
+                  keyAccess: false,
+                  statusAccess: 1
+              })
+            }
+        })
+      }
 
     onAddClickHandler() {
         axios.get('https://tapeghadkpserver.herokuapp.com/tags').then(res => {
@@ -1053,6 +1071,7 @@ class CollectionItems extends Component {
 
        this.state.counter > 0 && setInterval(() => {
         this.isItemsExists();
+        this.CheckAccess();
     }, 3000);
        
         const { match: { params } } = this.props;
@@ -1112,6 +1131,7 @@ class CollectionItems extends Component {
                <div className="collection-page" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                    {console.log("111")}
                    {this.CheckCookies()}
+                   {this.state.keyAccess ? this.CheckAccess() : null}
                 {this.state.goto==="on" ? <Redirect exact to={`/collection/${this.state.editnameColl}`}  {...this.setState({goto: ""})}/> : null}
                 {this.state.redirect==="1" ? <Redirect exact to="/"/> :
                     this.state.redirect==="00" ?

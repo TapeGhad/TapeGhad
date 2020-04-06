@@ -22,6 +22,7 @@ class MainPage extends Component {
         this.onChangeCommentItem = this.onChangeCommentItem.bind(this);
         this.onCreateComment = this.onCreateComment.bind(this);
         this.deleteCollection = this.deleteCollection.bind(this);
+        this.CheckAccess = this.CheckAccess.bind(this);
 
 
         this.state = {
@@ -47,19 +48,7 @@ class MainPage extends Component {
           const user = {
             username: this.props.authorized
           }
-          axios.post('https://tapeghadkpserver.herokuapp.com/users/checkAccess', user)
-          .then(res => {
-              if (res.data==="Admin") {
-                this.setState({
-                statusAccess: 2
-                })
-              }
-              else {
-                this.setState({
-                    statusAccess: 1
-                })
-              }
-          })
+          
           axios.post('https://tapeghadkpserver.herokuapp.com/users/confirmCookie', user)
           .then(res => {
             if (res.data==="Exists") {}
@@ -72,6 +61,23 @@ class MainPage extends Component {
             }
           });
       }}
+
+      CheckAccess() {
+        axios.post('https://tapeghadkpserver.herokuapp.com/users/checkAccess', user)
+        .then(res => {
+            if (res.data==="Admin") {
+              this.setState({
+              statusAccess: 2
+              })
+            }
+            else {
+              this.setState({
+                  keyAccess: false,
+                  statusAccess: 1
+              })
+            }
+        })
+      }
 
     isCollectionsExists () {
         axios.get('https://tapeghadkpserver.herokuapp.com/collections').then(res => {
@@ -353,6 +359,7 @@ class MainPage extends Component {
         this.state.counter > 0 && setInterval(() => {
             this.isItemsExists();
             this.isCollectionsExists();
+            this.CheckAccess();
         }, 3000);
       }
 
@@ -366,6 +373,7 @@ class MainPage extends Component {
                     {console.log("111")}
                     {this.CheckCookies()}
                     {this.state.keyColl ? this.isCollectionsExists() : null}
+                    {this.state.keyAccess ? this.CheckAccess() : null}
                     {this.state.keyItem ? this.isItemsExists() : null}
 
                     <div className="collections-block-main">
